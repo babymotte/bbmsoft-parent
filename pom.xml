@@ -184,4 +184,15 @@
 
 	</build>
 
+	<distributionManagement>
+		<snapshotRepository>
+			<id>bbmsoft-nexus-snapshots</id>
+			<url>https://nexus.bbmsoft.net/repository/maven-snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>bbmsoft-nexus-releases</id>
+			<url>https://nexus.bbmsoft.net/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
+
 </project>
