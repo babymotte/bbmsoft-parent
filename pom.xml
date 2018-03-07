@@ -7,6 +7,30 @@
 	<artifactId>bbmsoft-parent</artifactId>
 	<version>2.0.1-SNAPSHOT</version>
 
+	<name>BBMSoft Parent POM</name>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Michael Bachmann</name>
+			<email>kontakt@babymotte.de</email>
+			<organization>BBMSoft</organization>
+			<organizationUrl>https://github.com/bbmsoft/</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/bbmsoft/bbmsoft-parent.git</connection>
+		<developerConnection>scm:git:ssh://github.com:bbmsoft/bbmsoft-parent.git</developerConnection>
+		<url>http://github.com/bbmsoft/bbmsoft-parent/tree/master</url>
+	</scm>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
