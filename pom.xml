@@ -16,6 +16,7 @@
 		<compiler.plugin.version>3.0</compiler.plugin.version>
 		<source.plugin.version>3.0.1</source.plugin.version>
 		<javadoc.plugin.version>2.10.4</javadoc.plugin.version>
+		<gpg.plugin.version>1.6</gpg.plugin.version>
 		<osgi.version>6.0.0</osgi.version>
 		<guava.version>18.0</guava.version>
 		<guice.version>3.0</guice.version>
@@ -231,5 +232,34 @@
 			<url>https://nexus.bbmsoft.net/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
+
+	<profiles>
+		<profile>
+			<id>sign</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${gpg.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<keyname>${gpg.keyname}</keyname>
+									<passphraseServerId>${gpg.serverid}</passphraseServerId>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 
 </project>
