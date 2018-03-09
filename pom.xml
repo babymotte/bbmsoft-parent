@@ -8,6 +8,10 @@
 	<version>2.0.1-SNAPSHOT</version>
 
 	<name>BBMSoft Parent POM</name>
+	
+	<description>Parent pom of all projects developed at https://github.com/bbmsoft/</description>
+	
+	<url>http://github.com/bbmsoft/bbmsoft-parent</url>
 
 	<licenses>
 		<license>
