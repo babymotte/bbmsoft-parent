@@ -223,43 +223,20 @@
 
 	</build>
 
-	<repositories>
-		<repository>
-			<id>bbmsoft-nexus-snapshots</id>
-			<url>https://nexus.bbmsoft.net/repository/maven-snapshots/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-		<repository>
-			<id>bbmsoft-nexus-releases</id>
-			<url>https://nexus.bbmsoft.net/repository/maven-snapshots/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-	</repositories>
-
 	<distributionManagement>
 		<snapshotRepository>
-			<id>bbmsoft-nexus-snapshots</id>
-			<url>https://nexus.bbmsoft.net/repository/maven-snapshots/</url>
+			<id>${snapshot.repo.id}</id>
+			<url>${snapshot.repo.url}</url>
 		</snapshotRepository>
 		<repository>
-			<id>bbmsoft-nexus-releases</id>
-			<url>https://nexus.bbmsoft.net/repository/maven-releases/</url>
+			<id>${staging.repo.id}</id>
+			<url>${staging.repo.url}</url>
 		</repository>
 	</distributionManagement>
 
 	<profiles>
 		<profile>
-			<id>sign</id>
+			<id>deploy</id>
 			<build>
 				<plugins>
 					<plugin>
