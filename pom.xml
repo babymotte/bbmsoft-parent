@@ -5,24 +5,55 @@
 
 	<groupId>net.bbmsoft</groupId>
 	<artifactId>bbmsoft-parent</artifactId>
-	<version>2.0.0</version>
+	<version>2.0.1</version>
+
+	<name>BBMSoft Parent POM</name>
+	
+	<description>Parent pom of all projects developed at https://github.com/bbmsoft/</description>
+	
+	<url>http://github.com/bbmsoft/bbmsoft-parent</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Michael Bachmann</name>
+			<email>kontakt@babymotte.de</email>
+			<organization>BBMSoft</organization>
+			<organizationUrl>https://github.com/bbmsoft/</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/bbmsoft/bbmsoft-parent.git</connection>
+		<developerConnection>scm:git:ssh://github.com:bbmsoft/bbmsoft-parent.git</developerConnection>
+		<url>http://github.com/bbmsoft/bbmsoft-parent/tree/master</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<xtend.version>2.12.0</xtend.version>
 		<jar.plugin.version>3.0.2</jar.plugin.version>
-		<bnd.plugin.version>3.5.0</bnd.plugin.version>
+		<bnd.version>3.5.0</bnd.version>
 		<compiler.plugin.version>3.0</compiler.plugin.version>
 		<source.plugin.version>3.0.1</source.plugin.version>
 		<javadoc.plugin.version>2.10.4</javadoc.plugin.version>
-		<osgi.version>5.0.0</osgi.version>
+		<gpg.plugin.version>1.6</gpg.plugin.version>
+		<osgi.version>6.0.0</osgi.version>
 		<guava.version>18.0</guava.version>
 		<guice.version>3.0</guice.version>
 		<slf4j.version>1.7.2</slf4j.version>
 		<junit.version>4.12</junit.version>
 		<mockito.version>1.10.19</mockito.version>
 		<logback.version>1.2.1</logback.version>
+		<felix.framework.version>5.6.10</felix.framework.version>
+		<felix.scr.version>2.0.14</felix.scr.version>
 	</properties>
 
 	<packaging>pom</packaging>
@@ -33,6 +64,20 @@
 			<dependency>
 				<groupId>org.osgi</groupId>
 				<artifactId>org.osgi.core</artifactId>
+				<version>${osgi.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.annotation</artifactId>
+				<version>${osgi.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.cmpn</artifactId>
 				<version>${osgi.version}</version>
 				<scope>provided</scope>
 			</dependency>
@@ -110,10 +155,73 @@
 				</exclusions>
 			</dependency>
 
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.framework</artifactId>
+				<version>${felix.framework.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.scr</artifactId>
+				<version>${felix.scr.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
 	<build>
+
+		<defaultGoal>clean install</defaultGoal>
+
+		<pluginManagement>
+
+			<plugins>
+
+				<plugin>
+					<groupId>org.eclipse.xtend</groupId>
+					<artifactId>xtend-maven-plugin</artifactId>
+					<version>${xtend.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>compile</goal>
+								<goal>testCompile</goal>
+								<goal>xtend-install-debug-info</goal>
+								<goal>xtend-test-install-debug-info</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<outputDirectory>${project.build.directory}/src-gen/main/xtend</outputDirectory>
+						<testOutputDirectory>${project.build.directory}/src-gen/test/xtend</testOutputDirectory>
+						<javaSourceVersion>${java.version}</javaSourceVersion>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>biz.aQute.bnd</groupId>
+					<artifactId>bnd-indexer-maven-plugin</artifactId>
+					<version>${bnd.version}</version>
+					<configuration>
+						<includeJar>true</includeJar>
+						<includeGzip>false</includeGzip>
+						<localURLs>ALLOWED</localURLs>
+						<attach>false</attach>
+					</configuration>
+					<executions>
+						<execution>
+							<id>index</id>
+							<goals>
+								<goal>index</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+			</plugins>
+
+		</pluginManagement>
 
 		<plugins>
 
@@ -139,7 +247,7 @@
 			<plugin>
 				<groupId>biz.aQute.bnd</groupId>
 				<artifactId>bnd-maven-plugin</artifactId>
-				<version>${bnd.plugin.version}</version>
+				<version>${bnd.version}</version>
 
 				<executions>
 					<execution>
@@ -184,38 +292,44 @@
 
 	</build>
 
-	<repositories>
-		<repository>
-			<id>bbmsoft-nexus-snapshots</id>
-			<url>https://nexus.bbmsoft.net/repository/maven-snapshots/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-		<repository>
-			<id>bbmsoft-nexus-releases</id>
-			<url>https://nexus.bbmsoft.net/repository/maven-snapshots/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-	</repositories>
-
 	<distributionManagement>
 		<snapshotRepository>
-			<id>bbmsoft-nexus-snapshots</id>
-			<url>https://nexus.bbmsoft.net/repository/maven-snapshots/</url>
+			<id>${snapshot.repo.id}</id>
+			<url>${snapshot.repo.url}</url>
 		</snapshotRepository>
 		<repository>
-			<id>bbmsoft-nexus-releases</id>
-			<url>https://nexus.bbmsoft.net/repository/maven-releases/</url>
+			<id>${staging.repo.id}</id>
+			<url>${staging.repo.url}</url>
 		</repository>
 	</distributionManagement>
+
+	<profiles>
+		<profile>
+			<id>deploy</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${gpg.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<keyname>${gpg.keyname}</keyname>
+									<passphraseServerId>${gpg.serverid}</passphraseServerId>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 
 </project>
