@@ -36,7 +36,7 @@
 		<java.version>1.8</java.version>
 		<xtend.version>2.12.0</xtend.version>
 		<jar.plugin.version>3.0.2</jar.plugin.version>
-		<bnd.plugin.version>3.5.0</bnd.plugin.version>
+		<bnd.version>3.5.0</bnd.version>
 		<compiler.plugin.version>3.0</compiler.plugin.version>
 		<source.plugin.version>3.0.1</source.plugin.version>
 		<javadoc.plugin.version>2.10.4</javadoc.plugin.version>
@@ -48,6 +48,8 @@
 		<junit.version>4.12</junit.version>
 		<mockito.version>1.10.19</mockito.version>
 		<logback.version>1.2.1</logback.version>
+		<felix.framework.version>5.6.10</felix.framework.version>
+		<felix.scr.version>2.0.14</felix.scr.version>
 	</properties>
 
 	<packaging>pom</packaging>
@@ -149,10 +151,24 @@
 				</exclusions>
 			</dependency>
 
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.framework</artifactId>
+				<version>${felix.framework.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.scr</artifactId>
+				<version>${felix.scr.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
 	<build>
+
+		<defaultGoal>clean install</defaultGoal>
 
 		<pluginManagement>
 
@@ -177,6 +193,26 @@
 						<testOutputDirectory>${project.build.directory}/src-gen/test/xtend</testOutputDirectory>
 						<javaSourceVersion>${java.version}</javaSourceVersion>
 					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>biz.aQute.bnd</groupId>
+					<artifactId>bnd-indexer-maven-plugin</artifactId>
+					<version>${bnd.version}</version>
+					<configuration>
+						<includeJar>true</includeJar>
+						<includeGzip>false</includeGzip>
+						<localURLs>ALLOWED</localURLs>
+						<attach>false</attach>
+					</configuration>
+					<executions>
+						<execution>
+							<id>index</id>
+							<goals>
+								<goal>index</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 
 			</plugins>
@@ -207,7 +243,7 @@
 			<plugin>
 				<groupId>biz.aQute.bnd</groupId>
 				<artifactId>bnd-maven-plugin</artifactId>
-				<version>${bnd.plugin.version}</version>
+				<version>${bnd.version}</version>
 
 				<executions>
 					<execution>
