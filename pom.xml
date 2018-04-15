@@ -48,10 +48,10 @@
 		<osgi.version>6.0.0</osgi.version>
 		<guava.version>18.0</guava.version>
 		<guice.version>3.0</guice.version>
-		<slf4j.version>1.7.2</slf4j.version>
+		<slf4j.version>1.7.25</slf4j.version>
 		<junit.version>4.12</junit.version>
 		<mockito.version>1.10.19</mockito.version>
-		<logback.version>1.2.1</logback.version>
+		<logback.version>1.2.3</logback.version>
 		<felix.framework.version>5.6.10</felix.framework.version>
 		<felix.scr.version>2.0.14</felix.scr.version>
 	</properties>
