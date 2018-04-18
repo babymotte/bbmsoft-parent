@@ -286,6 +286,11 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<additionalJOptions>
+						<additionalJOption>-javafx</additionalJOption>
+					</additionalJOptions>
+				</configuration>
 			</plugin>
 
 		</plugins>
