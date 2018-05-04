@@ -1,16 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.bbmsoft</groupId>
 	<artifactId>bbmsoft-parent</artifactId>
-	<version>2.0.1</version>
+	<version>2.0.2</version>
 
 	<name>BBMSoft Parent POM</name>
-	
+
 	<description>Parent pom of all projects developed at https://github.com/bbmsoft/</description>
-	
+
 	<url>http://github.com/bbmsoft/bbmsoft-parent</url>
 
 	<licenses>
@@ -41,19 +42,24 @@
 		<xtend.version>2.12.0</xtend.version>
 		<jar.plugin.version>3.0.2</jar.plugin.version>
 		<bnd.version>3.5.0</bnd.version>
-		<compiler.plugin.version>3.0</compiler.plugin.version>
+		<compiler.plugin.version>3.7.0</compiler.plugin.version>
 		<source.plugin.version>3.0.1</source.plugin.version>
-		<javadoc.plugin.version>2.10.4</javadoc.plugin.version>
+		<javadoc.plugin.version>3.0.0</javadoc.plugin.version>
 		<gpg.plugin.version>1.6</gpg.plugin.version>
 		<osgi.version>6.0.0</osgi.version>
 		<guava.version>18.0</guava.version>
 		<guice.version>3.0</guice.version>
-		<slf4j.version>1.7.2</slf4j.version>
+		<slf4j.version>1.7.25</slf4j.version>
 		<junit.version>4.12</junit.version>
 		<mockito.version>1.10.19</mockito.version>
-		<logback.version>1.2.1</logback.version>
+		<logback.version>1.2.3</logback.version>
 		<felix.framework.version>5.6.10</felix.framework.version>
+		<felix.gogo.shell.version>1.0.0</felix.gogo.shell.version>
+		<felix.gogo.command.version>1.0.2</felix.gogo.command.version>
 		<felix.scr.version>2.0.14</felix.scr.version>
+		<felix.log.version>1.0.1</felix.log.version>
+		<felix.configadmin.version>1.8.16</felix.configadmin.version>
+		<felix.fileinstall.version>3.6.4</felix.fileinstall.version>
 	</properties>
 
 	<packaging>pom</packaging>
@@ -63,7 +69,7 @@
 
 			<dependency>
 				<groupId>org.osgi</groupId>
-				<artifactId>org.osgi.core</artifactId>
+				<artifactId>osgi.core</artifactId>
 				<version>${osgi.version}</version>
 				<scope>provided</scope>
 			</dependency>
@@ -163,8 +169,44 @@
 
 			<dependency>
 				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.gogo.shell</artifactId>
+				<version>${felix.gogo.shell.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.gogo.command</artifactId>
+				<version>${felix.gogo.command.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.felix</groupId>
 				<artifactId>org.apache.felix.scr</artifactId>
 				<version>${felix.scr.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.log</artifactId>
+				<version>${felix.log.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>osgi-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.configadmin</artifactId>
+				<version>${felix.configadmin.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.fileinstall</artifactId>
+				<version>${felix.fileinstall.version}</version>
 			</dependency>
 
 		</dependencies>
@@ -206,7 +248,7 @@
 					<configuration>
 						<includeJar>true</includeJar>
 						<includeGzip>false</includeGzip>
-						<localURLs>ALLOWED</localURLs>
+						<localURLs>REQUIRED</localURLs>
 						<attach>false</attach>
 					</configuration>
 					<executions>
@@ -286,6 +328,11 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<additionalJOptions>
+						<additionalJOption>-javafx</additionalJOption>
+					</additionalJOptions>
+				</configuration>
 			</plugin>
 
 		</plugins>
