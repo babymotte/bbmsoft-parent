@@ -60,6 +60,7 @@
 		<felix.log.version>1.0.1</felix.log.version>
 		<felix.configadmin.version>1.8.16</felix.configadmin.version>
 		<felix.fileinstall.version>3.6.4</felix.fileinstall.version>
+		<felix.eventadmin.version>1.5.0</felix.eventadmin.version>
 	</properties>
 
 	<packaging>pom</packaging>
@@ -202,11 +203,17 @@
 				<artifactId>org.apache.felix.configadmin</artifactId>
 				<version>${felix.configadmin.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>org.apache.felix.fileinstall</artifactId>
 				<version>${felix.fileinstall.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.eventadmin</artifactId>
+				<version>${felix.eventadmin.version}</version>
 			</dependency>
 
 		</dependencies>
