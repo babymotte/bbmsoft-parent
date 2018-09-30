@@ -61,6 +61,7 @@
 		<felix.configadmin.version>1.8.16</felix.configadmin.version>
 		<felix.fileinstall.version>3.6.4</felix.fileinstall.version>
 		<felix.eventadmin.version>1.5.0</felix.eventadmin.version>
+		<iocfx.version>2.0.0</iocfx.version>
 	</properties>
 
 	<packaging>pom</packaging>
@@ -214,6 +215,12 @@
 				<groupId>org.apache.felix</groupId>
 				<artifactId>org.apache.felix.eventadmin</artifactId>
 				<version>${felix.eventadmin.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.bbmsoft</groupId>
+				<artifactId>iocfx</artifactId>
+				<version>${iocfx.version}</version>
 			</dependency>
 
 		</dependencies>
