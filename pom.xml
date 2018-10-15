@@ -10,9 +10,9 @@
 
 	<name>BBMSoft Parent POM</name>
 
-	<description>Parent pom of all projects developed at https://github.com/bbmsoft/</description>
+	<description>Parent pom of all projects developed at http://gitlab.com/bbmsoft.net/</description>
 
-	<url>http://github.com/bbmsoft/bbmsoft-parent</url>
+	<url>http://gitlab.com/bbmsoft.net/bbmsoft-parent/</url>
 
 	<licenses>
 		<license>
@@ -25,15 +25,15 @@
 		<developer>
 			<name>Michael Bachmann</name>
 			<email>kontakt@babymotte.de</email>
-			<organization>BBMSoft</organization>
-			<organizationUrl>https://github.com/bbmsoft/</organizationUrl>
+			<organization>bbmsoft.net</organization>
+			<organizationUrl>https://gitlab.com/bbmsoft.net/</organizationUrl>
 		</developer>
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com/bbmsoft/bbmsoft-parent.git</connection>
-		<developerConnection>scm:git:ssh://github.com:bbmsoft/bbmsoft-parent.git</developerConnection>
-		<url>http://github.com/bbmsoft/bbmsoft-parent/tree/master</url>
+		<connection>scm:git:git://gitlab.com/bbmsoft.net/bbmsoft-parent.git</connection>
+		<developerConnection>scm:git:ssh://gitlab.com/bbmsoft.net/bbmsoft-parent.git</developerConnection>
+		<url>http://gitlab.com/bbmsoft.net/bbmsoft-parent/tree/master</url>
 	</scm>
 
 	<properties>
@@ -409,6 +409,5 @@
 			</build>
 		</profile>
 	</profiles>
-
 
 </project>
